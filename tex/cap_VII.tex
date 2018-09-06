@@ -1,0 +1,61 @@
+\chapter{Final Considerations}
+\label{cap:Considerations}
+
+This work presented the conduction of an extensive structural analysis of 500 ego networks multilayers of Twitter. From the modeling of four layers representing the types of {\em follow, retweet, like} and {\em mention} interactions, it was possible to identify and characterize the main structural properties of these networks. To the best of our knowledge a detailed study of layers composing the network of a user in Twitter has not been reported until now. 
+
+Next, in Section \ref{sec:conclusion}, is the conclusion of the work with the description of the main results found and on how they can contribute to the advancement of research on the subject here discussed; and in Section \ref{sec:future} are listed some of the next steps that can be given from the knowledge acquired with this dissertation, or the fact that some questions still lack further research to achieve satisfactory results.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+The objectives proposed for this work were reached. A structural analysis of the multilayer ego networks was performed on Twitter and we addressed several issues with regard to the layers of Twitter ego networks. First,  we found that despite  great variations both in the number of vertices and edges in the same layers for different egos, the density in all layers are similarly low. Most  egos do not achieve 10\% of density in any layer. Also, most edges are not ego-alter edges,  meaning that there is many interaction between alters in a layer.
+
+ 
+%the  mean clustering coefficients of layers are greater than a corresponding random graph. The mean average shortest path lengths of the layers are, on the contrary, very similar to ones found in the corresponding random graphs. These characteristics allowed us to conclude that the great 
+%. 
+
+We also found that the majority of layers of all egos are small worlds, an interesting property regarding the flow of communication in these layers. The layers are also scale-free for most egos, when regarding indegree distribution. 
+%This means that in every layer there is a small group of important vertices which receive many interactions from many other vertices and the great majority of vertices receiving very few interactions. 
+ 
+The high clustering coefficient of vertices  in each layer leads to formation of community sets  with the following characteristics: a) the communities are dense subgraphs, with density much superior to that of the whole layer; b) communities in the set are interconnected as demonstrated by the high values of conductance we found; c) the sets are formed by at least one big community and tens of small communities, not achieving 10\% of the size of the biggest one. Besides, these characteristics are very similar in all layers, indicating that all layers have the same potential to form communities.
+
+There is considerable overlap between the alter sets of different layers for an ego, with most egos having at least 30\% of overlap between any pair of layers. This lead us to conclude that there is much opportunity for information diffusion in the ego network, i.e. not only each layer is a small world but these small worlds intercept each other. Besides, we found considerable overlap between hubs (high indegree vertices) between layers, meaning that some nodes are influential regarding more than one type of interaction. 
+
+Also, our analysis  allowed also to find and interesting potential problem caused by misuse of the follow operation by about 25\% of the users of our sample. These users do not follow up to 35\% of the top ten alters they retweet most. This is not  only a problem for the users themselves, but may also affect the propagation of tweets throughout the followers of these users.
+
+Finally we looked at the ability of Twitter lists to serve as ground truth for the problem of detecting communities in Twitter’s ego networks and concluded that this is not feasible. There is little interaction between the ego and the list elements and the intersection of the alters sets of each layer with the list elements is very low, that is, they are different sets.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\section{Future Works}
+\label{sec:future}
+We hope the information derived in this article to be useful for future works in many research subjects in Twitter OSN. In what follows, we briefly discuss how some of our findings could be explored in at least four areas of intense research about the Twitter OSN in the last years. 
+
+
+\subsubsection*{Community detection}
+Most works in community detection studies in Twitter considered only the network formed by the follow layer. In this work we show that layers of ego networks related to other types of interaction (like, mention and retweet) have similar potencial to form communities. In addition, these interactions may be repeated between two vertices, meaning that these layer besides being directed are also weighted graphs. These interactions are tweet-related which means that they tend to be related to topics discussed in the ego network. Thus, an  interesting future work would  be an investigation on which layer or fusion of layers, is more appropriate to find topical communities in a ego network.  Community detection algorithms for weighted graphs could be also considered to detect more topic related communities. 
+
+\subsubsection*{Information diffusion}
+
+Information diffusion in online social networks have been traditionally represented by two distinct models: {\em Independent Cascade} %\cite{Kempe:2003}
+and {\em Linear Threshold}. The modeled cascade generated by these methods often reach all the nodes in the network. However, Lerman \cite{Lerman2016} demonstrated  that  large diffusions are extremely rare in reality. Both works of Lerman \cite{Lerman2016} and Arnaboldi et al. \cite{ARNABOLDI2017}, conclude that human cognitive limitations regarding how people interact with their time line and  how they interact with other people limit information diffusion in online social networks. However, the above mentioned  works  did  not consider the like operation when analyzing Twitter networks.
+
+We think that the like operation is an important mean of contagion\footnote{In the context of online social network we consider a contagion any form of interaction a user has with a post received in her timeline,} although it is not a  means of transmission, since the like operation does not communicate a tweet to another person as does the retweet, reply an mention operations. Like operation is an important way of contagion, because it is the most common operation  over a tweet. Thus, if we also take into consideration the users that ``liked'' a tweet, it is possible that we find larger contagion than those found in previous work. It would be interesting an investigation that also considers the like interaction in the information diffusion process.
+ 
+We also suggest investigations about influent users in the light of our findings. We found hat there  are top ``retweeted'', top ``liked'', top ``mentioned'' and top ``followed'' alters in our defined layers of ego networks, and the indegree distributions follows  a power-law. Also, there is considerable overlap among these top alter of different layers, specially between the retweet and like layer as shown in Fig. \ref{fig:rbo_indegree}. We consider the the combination of these  three observations should  be investigated in future research on information diffusion in Twitter because they together imply that the set of influent and hub alters (those in the follow layers) is expected to be very small. Finding this small set may be  important for optimizing information diffusion in Twitter.
+
+Finally, we also found that most edges in our proposed layers are alter-alter or alter-ego  edges which means that other ego networks intercept a given ego network. We expect this information to be useful for future investigation on  the importance of an ego network and their layers for information diffusion in the  entire Twitter network. 
+
+\subsection*{Tweet recommendation}
+The way tweets flow in a user time-line may prevent this user to see many tweets that could be of her interest. Most recent tweets pull the least recent ones down in the timeline and the overload of arriving tweets may rapidly makes tweets disappear from the user sights. A way to cope with this problem is to first detect in the user time-line the tweets that are potentially most interesting to the user and to rerank the timeline so that most interesting tweets appear at the top of the timeline. Detecting items that are potentially interesting for a given user is the main problem of recommendation systems.
+
+A popular approach in recommender systems is {\em collaborative filtering} where an item is considered to be interesting for a  user if it was considered interesting to other users with similar preferences. We consider there are  some opportunities for exploring collaborative filtering approaches using the layers corresponding to the multilayer ego network of the user  $e$ to whom we want to infer interesting tweets. One possibility is to identify those tweets most retweeted (or/and liked) by alters in each community detected in the retweet (like) layer of $e$. We could discard the communities $e$ is not included and we could also filter out tweets not occurring in $e$'s timeline. The ranking of the remaining most retweeted (liked) tweets would be  finally recommended to  $e$.  
+
+Another possibility would be to  identify the alters of $e$ who have retweet (or/and like) patterns most similar to $e$ (i.e., users who retweets or likes a great number of tweets in common with $e$) assign a similarity value to each of this alters. The rerank of  $e$'s timeline could be guided by propagating and accumulating to each tweet those the similarity values of the alters who also retweet (or liked) that tweet. 
+

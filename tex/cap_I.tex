@@ -1,0 +1,125 @@
+\chapter{Introduction}
+\label{cap:Intro}
+
+In the past few years network theory has been largely and successfully used in the investigation and characterization of the structure and dynamics of complex systems \cite{Strogatz2001, Newman2003}. The research challenge has been the improvement of techniques that allow the understanding of the structure and behavior of the elements of real systems, which attracts researchers from diverse fields of knowledge such as biology, sociology, mathematics, physics, computer science, among others \cite{Motter2012,Orman2012,Zafarani2015,Chakraborty2017}.
+
+The most widely used model for representing complex systems is through graphs. The traditional network theory represents each constituent elementt (or unit) of a complex system as node of a graph and all the interactions or relationships between two units as a single link, i.e, an edge in the graph. With this model it is possible to determine some non-trivial topological (structural) features of a complex system such as small-worlds or scale-free, and exhibit community structures \cite{PARK201632}.
+
+Despite not taking into consideration specificities among the different types os interactions or relationships, the modeling approach of complex networks through graphs has been extremely successful. For instance, it has been used to show that many real networks present the small-world property \cite{Watts1998, Porter:2012}, the high clustering coefficient and low values for the shortest path lenght; scale-free due to the heavy-tailed degree distribution \cite{Barabasi509, Clauset2009}; and  contain nodes that play central roles as authority or popularity \cite{Newman:2010, Wasserman1994}, among other important findings.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Motivation}
+\label{sec:motivation}
+
+Modeling all types of relationships and interactions between two nodes as a single link between them might in general discard important information about the structure and function of the original system, because in many cases these interactions differ both in meaning and in intensity \cite{Darmon2015}. On the other hand, failure to evaluate the importance of each different type of relationship between two vertices results in a poor representation of the system \cite{Szell2010}. For example, in complex multimodal transportation systems, a set of locations might be reached in different ways, e.g., using bus, underground, suburban rail, and other types of transportation. In these systems, each type of interaction (i.e., type of transportation between locations) has associated a given relevance, importance, cost, distance and limitation.
+
+In online social networks (OSNs), like Twitter, a user may interact with other users in different ways, e.g., by following another user, by liking a tweet of another user, by retweeting a tweet written by another user and by mentioning  other user. Each of these interaction types has a different meaning. Also, some of them do not naturally have an associate value or weight (ex. the following relation) while others have (e.x.,  user $a$ may have retweet  user $b$ 50 times). Thus, treating all the links as being equivalent implies in losing  important information.  
+
+A more appropriate modeling of such systems is in terms of  a network with many layers where  each layer describes all the edges of a given type. Informally, a {\em multilayer network}  is a  set of $n$ nodes which are connected to each other by means of edges belonging to $m$ different classes or types. Each class of edges is represented as a separate layer. \thierson{One may consider that a node $i$ of the multilayer network consists of $k$, $1\leq k \leq m$ replicas, one for each layer that $i$ is involved in.} 
+
+Recently, a great effort has been devoted to the characterization and modeling of multilayer networks. There are many types of modeling multilayer networks. Consequently, some  measures have been proposed in the context of real-world multilayer networks such as multiplayer online games \cite{Szell2010}, air transportation systems \cite{Cardilo2013}, and Indonesian terrorist network \cite{Battiston2014}. 
+
+Twitter is a very important OSN not only because it is an information diffusion media used by millions of people including journalists, artists and presidents of many countries, but also because it is the most  investigated OSN by academic researchers. Many research about Twitter has emerged  involving a pletora of applications like, for example, information cascading analysis \cite{HU2017, Hakim2014}, influence detection \cite{Chen:2014,Haddadi2010}, community detection \cite{McAuley:2012,GADEK2017584}, content recommendation \cite{Hong:2013,Chen2012,Jiang:2016} among others.
+
+However, the different types of interaction among Twitter users have rarely been studied as separate layers of the Twitter network in literature. Actually, worse than treating different types of interactions in the same way, the majority of research about Twitter has considered only the {\em follow} interaction as connections among users. The other types of interaction are neglected or are considered only as additional information over the structure of the network formed by the {\em follow} links. 
+
+In Darmon et al. \cite{Darmon2015} we have an example of this "following restricted" view of Twitter, by proposing a multifaceted approach to detect communities in Twitter. The authors analyzed three different facets: user activity, topic and interaction (retweet or mention). However, they  the build a graph based on the follow interaction among users and derive distinct versions of this graph by assigning  to edges a different weight related to each facet of the communities  they intend to detect.
+
+Another example, Bhattacharya et al. \cite{Bhattacharya:2014} propose an approach to identify topic of interest of given Twitter user $u$ by first identifying the topics of interest of people $u$ follows. They showed that their approach is promising, but an interesting question is if even better results could be achieved if interaction links related to users explicit approval reaction (like or retweet) were considered instead the following relation. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Justification}
+\label{sec:justification}
+
+Only recently, researchers started considering a multi-relational or multilayer view of the relations in Twitter \cite{Azaza2015,Zhaoyun2013,Hajibagheri2016}. The works in \cite{Azaza2015, Zhaoyun2013} investigated how to detect influence users in Twitter by considering the Twitter network as formed by layers. The work in \cite{Hajibagheri2016}, proposed a method for predicting links in a multilayer network derived from Twitter, composed of three layers corresponding to reply, retweet and mention interactions.
+
+These articles take advantage of considering Twitter as a multilayer network in specific applications. However, there are only few articles which analyze the characteristics of the different layers in Twitter, as well as the difference among these layers \cite{Omodei2015}. Research in this direction is very important because it can reveal useful structural information about the layers that may influence design of solutions of many applications like tweet recommendation, sentiment analysis, user profiling for market analysis, among others.
+
+In this work, we adopt a user-based approach to investigate multilayer networks derived from Twitter. For a given user $e$ (the {\em ego}), we derive her ego network by obtaining her interactions with other users in Twitter. We consider user $e$ and each user she interacts with as the nodes of her ego network. We refer to each user $e$ interacts with as $e$'s {\em alter}. The set of direct edges in the ego network is composed of interactions among the set of users formed by the ego and the alters. For each ego network we define a layer for four different interaction types: {\em follow, retweet, like} and {\em mention}. A formal definition of a multilayer ego network is given in Section \ref{sec:MEN}.
+
+The adoption of an egocentric point of view for investigating the different layers of Twitter is interesting for many reasons including: 
+\begin{itemize}
+\item [a)] It allows for obtaining different small samples of the Twitter network which is convenient for detecting repetitions of patterns or tendencies in the whole network \cite{Leskovec2012}. 
+\item [b)] It reveals important aspects that may be useful for research in many critical personalized services on OSNs, such as personalized recommendation \cite{Hong:2013,Chen2012}, detection of influential users for a target user \cite{Guo:2013}, and local community detection \cite{McAuley:2012,Coscia:2014}, to name a few.  
+\end{itemize}
+
+Contrary to the work found in the literature that analyzes only a small set of ego networks \cite{Achiam2016,Omodei2015,Leskovec2012,Epasto2015,Dykstra2014}, usually in a specific context, we use for this work an extensive set of 500 ego networks collected from Twitter. This collection gives us an overview of the behavior of egos in each layer, that is, Twitter users, not just the behavior between a specific ego and its set of alters. For example, by analyzing the variability of each ego's interactions at each layer, we can identify whether there is a uniform distribution of different types of interactions or whether Twitter users tend to use a particular type of interaction, among other possibilities.
+
+Another point that deserves attention in the analysis of OSNs is in relation to the quality of the communities present in these networks. When we treat a Twitter ego network as a multilayer network we are considering different approaches to building the layers rather than just explicit connections between users such as ``follow'' on Twitter. Detecting communities in different layers results in communities with different meanings, based on the type of interaction between users. According to Darmon et al. \cite{Darmon2015}, the concept of community is very broad and the goal of community detection must be in line with the type of community one wishes to encounter. In this direction, multilayer analysis expands the possibilities of improving the quality of the communities found in OSNs.
+
+For this work we have collected the public data of Twitter users with egos selection criteria based on the Twitter lists in which they are registered or are the owners. The intention of this type of collection is not to let the data be biased on one of the interactions that we consider as one of the layers of the modeled multilayer ego networks. In addition, the collection of this form allows us to verify if this resource (Twitter lists) can be used as ground-truth for the problem of detecting communities, since there is a difficulty to find labeled communities to evaluate the quality of the communities detected in these network \cite{Xie2013,Wang2014,Zafarani2014,Zafarani2015}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Objectives}
+\label{sec:objectives}
+This work has as general objective to perform a structural analysis of the Twitter multilayer ego networks from the evaluation of structural properties in each layer. Specific objectives are:
+
+\begin{itemize}
+    \item Identify the main layers and perform the collection of a set of Twitter multilayer ego networks.
+    \item Analyze how do the number of edges and the number of vertices vary among layers.
+    \item Find out how reciprocal relations are in each layer.
+    \item Check for similarities in the elements (vertices and edges) and topology of the layers.
+    \item Identify if the layers are scale-free networks.
+    \item Identify if the layers are small worlds networks.
+    \item Investigate the capacity of the layers to generate communities.
+    \item Discover how a Twitter user relates to the users who are associated with their lists.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Main Contributions}
+\label{sec:contributions}
+We do not know of any work that analyzed the structural properties of different layers composing the ego networks in Twitter before. We consider that, in investigating the research objectives, described above, this work presents important contributions to understanding the network around a person on Twitter. The contribution of this dissertation are summarized as follows:
+
+\begin{itemize} 
+%    \item We investigated the distribution of the size of the vertex and edge sets in the follow, retweet, like and mention layers. All the layers presented high variance in the number of vertices and edges between the ego networks. As for the vertex set size, the retweet and like layers maintain a strong positive correlation and tend to converge to an average size, while the follow and mention layers have a moderate positive correlation and exhibit a long tail distribution.
+
+    \item We found  great variation in the number of vertices and edges among different layers for the same ego and for different egos. However,  the greatest majority of layers have very low density and the density values do not differ much from one layer to another. Also, in most layers the majority of edges are not ego-alter edges meaning that there is many interactions from alters to other alters and from alters to the ego.
+
+    \item For most ego networks, layers  differ from each other in both the vertices and the edges composing them. However, there are some overlap between layers. Specially, there is overlap between the most important vertices in each layer.
+
+%    \item We have identified that analyzed ego users tend to mention users that they follow, and that they tend to mark as favorite the tweets posted by users that they retweet (and vice versa). However, retweets and likes are usually performed on user tweets that the ego does not follow or mention.
+
+%    \item We also analyzed edge overlap among layers and found that the amount of edge overlap between pairs of layers  is small for all pairs considered. This occurs because despite the great amount of overlap of interactions between the ego and her alters, the alters do not interact with the same intensity and same patter with each other in each layer, which leads to a small intersection of the set of edges between layers.
+
+%    \item Many users (egos) may not receive all the tweets produced by the alters they interact most by retweets, likes and mentions. We found that ego users could retweet more if they were following their main retweet layer alters, because they retweeted a considerable number of tweets from users who are not their friends so there may be more tweets that they could retweet but end up not arriving in your timelines automatically, affeting information cascading in Twitter.
+    
+    \item  Most layers are scale-free and are small world graphs. These are  interesting novelties, since only the follow layer was supposed to have these properties given that they were found in previous work that considered samples of the entire Twitter follow graph \cite{Aparicio2015}.
+    
+%    \item We note that the distribution of indegrees of all layers of all ego networks follows a power law, and practically all layers of ego networks are small-worlds. The clustering coefficient of the mentions layer was larger than the other layers.
+
+    \item  Vertices in all  layers have high clustering coefficient, which means that they tend to cluster into communities. In fact, we found that all type of layers in most ego networks are structured in interconnected communities which follow similar patterns in all layers. This findings are very interesting because community detection has been applied only to networks formed by the follow interaction. We show that other type of interactions have similar potential to be used for community detection in Twitter.    
+    
+%    \item From the analysis made on the detected communities we can conclude that the distribution of values of all measures are surprisingly very similar for all layers. This information suggests that  the retweet, like, and mention layers have the same potentiality to be used for community detection in ego networks in Twitter as has the follow layer.
+    
+ %   \item We present a new approach to the problem of communities detection in Twitter because the different layers give the opportunity to evaluate the quality of the communities both according to the structure of the graph (follow layer) and according to the content or topics of the messages (retweet, like and mention layers).
+    
+    \item We show that there is little interaction between the ego and the elements of the Twitter lists, so it is not possible to use the lists as ground-truth in the process of assessing the quality of the communities detected in the ego networks.
+    
+    \item  We present a discussion on how the above findings and others reported in this article may be useful for  important applications in Twitter, like community detection and information diffusion.  
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Organization of Text}
+\label{sec:organization}
+
+The following is the layout of the contents of the remainder of this dissertation. Chapter \ref{cap:Basic} presents some basic concepts, definition and analysis of the network structure, and the details about the properties and measures of networks that we use to achieve the proposed objectives. In Chapter \ref{cap:RW} the main works related to this dissertation are described.
+
+Chapter \ref{cap:ExpSetup} defined the Twitter multilayer ego networks that were the objects of our study. Also in Chapter \ref{cap:ExpSetup} we describes the procedures for collecting and preparing the data for the experiments, as well as the configuration used in the modeling of the layers of the ego multilayer networks. In Chapter \ref{cap:Results} we present the results of the experiments, and in Chapter \ref{cap:Considerations} is the text with the final considerations of the work.
